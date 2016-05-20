@@ -1,0 +1,36 @@
+﻿@model SharePoint.ReciveMailAddinWeb.Models.MailSettings
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>メール受信ルール</h2>
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Update", "Home"))
+        {
+            <table class="mailruletable">
+                <thead>
+                    <tr>
+                        <td>メールアドレス</td>
+                        <td>受信リストタイトル</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Rules.Count; i++)
+                {
+                        <tr>
+                            <td>
+                                @Html.TextBoxFor(x => x.Rules[i].MailAddress)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(x => x.Rules[i].ListTile)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <input type="submit" value="更新" />
+
+        }
+    </div>
+</div>
